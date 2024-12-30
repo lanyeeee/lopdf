@@ -25,7 +25,7 @@ chrono = { version = "0.4", optional = true, default-features = false, features 
 ] }
 encoding_rs = "0.8.32"
 flate2 = "1.0"
-image = { version = "0.25", optional = true }
+image = { version = "0.25", optional = true, default-features = false }
 indexmap = "2.2.3"
 itoa = "1.0"
 log = "0.4"
@@ -51,7 +51,13 @@ tempfile = "3.3"
 async = ["tokio/rt-multi-thread", "tokio/macros"]
 chrono_time = ["chrono"]
 default = ["chrono_time", "nom_parser", "rayon"]
-embed_image = ["image"]
+
+__embed_image = ["image"]
+embed_image = ["__embed_image", "image/default"]
+embed_image_png = ["__embed_image", "image/png"]
+embed_image_jpeg = ["__embed_image", "image/jpeg"]
+embed_image_webp = ["__embed_image", "image/webp"]
+
 nom_parser = ["nom", "nom_locate"]
 serde = ["dep:serde"]
 

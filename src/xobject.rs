@@ -1,13 +1,13 @@
 use crate::*;
 use crate::{Dictionary, Stream};
 
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 use image::{self, ColorType, ImageFormat};
 
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 use std::path::Path;
 
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 use crate::Result;
 
 #[derive(Debug, Clone)]
@@ -39,7 +39,7 @@ pub fn form(boundingbox: Vec<f32>, matrix: Vec<f32>, content: Vec<u8>) -> Stream
     xobject
 }
 
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 pub fn image<P: AsRef<Path>>(path: P) -> Result<Stream> {
     use std::fs::File;
     use std::io::prelude::*;
@@ -51,7 +51,7 @@ pub fn image<P: AsRef<Path>>(path: P) -> Result<Stream> {
     image_from(buffer)
 }
 
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 pub fn image_from(buffer: Vec<u8>) -> Result<Stream> {
     let ((width, height), color_type) = get_dimensions_and_color_type(&buffer)?;
 
@@ -151,7 +151,7 @@ pub fn image_from(buffer: Vec<u8>) -> Result<Stream> {
 }
 
 /// Get the `dimensions` and `color type` without decode, for performance
-#[cfg(feature = "embed_image")]
+#[cfg(feature = "__embed_image")]
 fn get_dimensions_and_color_type(buffer: &Vec<u8>) -> Result<((u32, u32), ColorType)> {
     use image::{ImageDecoder, ImageReader};
 
