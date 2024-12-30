@@ -88,7 +88,7 @@ pub enum Error {
     #[error("found object ID does not match expected object ID")]
     ObjectIdMismatch,
     /// Error when handling images.
-    #[cfg(feature = "embed_image")]
+    #[cfg(feature = "__embed_image")]
     #[error("image error: {0}")]
     Image(#[from] image::ImageError),
     /// Syntax error while processing the content stream.
