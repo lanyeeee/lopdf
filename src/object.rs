@@ -666,7 +666,7 @@ impl Stream {
         use std::io::prelude::*;
 
         if self.dict.get(b"Filter").is_err() {
-            let mut encoder = ZlibEncoder::new(Vec::new(), Compression::best());
+            let mut encoder = ZlibEncoder::new(Vec::new(), Compression::fast());
             encoder.write_all(self.content.as_slice())?;
             let compressed = encoder.finish()?;
             if compressed.len() + 19 < self.content.len() {
